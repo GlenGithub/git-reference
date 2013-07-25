@@ -1,35 +1,26 @@
 ---
-layout: reference
+layout: zh_reference
 ---
 
 <div class="box">
   <h2>
     <span class="docs">
-      <a target="new" href="http://git-scm.com/book/en/Git-Branching">book</a>
+      <a target="new" href="http://git-scm.com/book/en/Git-Branching">书</a>
     </span>
-    Branching and Merging
+    分支与合并
   </h2>
   <div class="block">
-    <p>Branching in Git is one of its many great features.  If you have used other
-    version control systems, it's probably helpful to forget most of what you
-    think about branches - in fact, it may be more helpful to think of them
-    practically as <i>contexts</i> since that is how you will most often be
-    using them.  When you checkout different branches, you change contexts
-    that you are working in and you can quickly context-switch back and forth
-    between several different branches.
+    <p>分支是我最喜欢的 Git 特性之一。如果你用过其他版本控制系统，把你所知的分支给忘记，倒可能更有帮助些 ——
+      事实上，以我们使用分支的方式，把 Git 的分支看作 <i>上下文</i> 反而更合适。
+      当你检出分支时，你可以在两三个不同的分支之间来回切换。
     </p>
 
     <p class="nutshell">
-    <b>In a nutshell</b> you can create a branch with
-    <code>git branch (branchname)</code>, switch into that context with
-    <code>git checkout (branchname)</code>, record commit snapshots while
-    in that context, then can switch back and forth easily. When you switch
-    branches, Git replaces your working directory with the snapshot of the
-    latest commit on that branch so you don't have to have multiple directories
-    for multiple branches.  You merge branches together with
-    <code>git merge</code>.  You can easily merge multiple times from the same
-    branch over time, or alternately you can choose to delete a branch
-    immediately after merging it.
+      <b>简而言之</b>，你可以执行 <code>git branch (branchname)</code> 来创建分支，
+      使用 <code>git checkout (branchname)</code> 命令切换到该分支，在该分支的上下文环境中，
+      提交快照等，之后可以很容易地来回切换。当你切换分支的时候，Git 会用该分支的最后提交的快照替换你的工作目录的内容，
+      所以多个分支不需要多个目录。使用 <code>git merge</code> 来合并分支。你可以多次合并到统一分支，
+      也可以选择在合并之后直接删除被并入的分支。
     </p>
 
   </div>
@@ -38,42 +29,37 @@ layout: reference
 <div class="box">
   <h2>
     <span class="docs">
-      <a target="new" href="http://git-scm.com/docs/git-branch">docs</a> &nbsp;
-      <a target="new" href="http://git-scm.com/book/en/Git-Branching-What-a-Branch-Is">book</a>
+      <a target="new" href="http://git-scm.com/docs/git-branch">文档</a> &nbsp;
+      <a target="new" href="http://git-scm.com/book/en/Git-Branching-What-a-Branch-Is">书</a>
     </span>
     <a name="branch">git branch</a>
-    <span class="desc">list, create and manage working contexts</span>
+    <span class="desc">列出、创建与管理工作上下文</span>
   </h2>
 
   <br/>
 
   <h2>
     <span class="docs">
-      <a target="new" href="http://git-scm.com/docs/git-checkout">docs</a> &nbsp;
-      <a target="new" href="http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging">book</a>
+      <a target="new" href="http://git-scm.com/docs/git-checkout">文档</a> &nbsp;
+      <a target="new" href="http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging">书</a>
     </span>
     <a name="checkout">git checkout</a>
-    <span class="desc">switch to a new branch context</span>
+    <span class="desc">切换到新的分支上下文</span>
   </h2>
 
   <div class="block">
-    <p>The <code>git branch</code> command is a general branch management tool
-    for Git and can do several different things.  We'll cover the basic ones
-    that you'll use most - listing branches, creating branches and deleting
-    branches.  We will also cover basic <code>git checkout</code> here which
-    switches you between your branches.
+    <p><code>git branch</code> 命令是 Git 中的通用分支管理工具，可以通过它完成多项任务。
+      我们先说你会用到的最多的命令 —— 列出分支、创建分支和删除分支。
+      我们还会介绍用来切换分支的 <code>git checkout</code> 命令。
     </p>
 
     <h4>
       git branch
-      <small>list your available branches</small>
+      <small>列出可用的分支</small>
     </h4>
 
-    <p>Without arguments, <code>git branch</code> will list out the local
-    branches that you have.  The branch that you are currently working on will
-    have a star next to it and if you have
-    <a href="http://git-scm.com/book/en/Customizing-Git-Git-Configuration#Colors-in-Git">coloring turned on</a>,
-    will show the current branch in green.
+    <p>没有参数时，<code>git branch</code> 会列出你在本地的分支。你所在的分支的行首会有个星号作标记。
+      如果你开启了<a href="http://git-scm.com/book/en/Customizing-Git-Git-Configuration#Colors-in-Git">彩色模式</a>，当前分支会用绿色显示。
     </p>
 
 <pre>
@@ -81,20 +67,18 @@ $ git branch
 * <span class="green">master</span>
 </pre>
 
-    <p>This means that we have a 'master' branch and we are currently on it.
-    When you run <code>git init</code> it will automatically create a 'master'
-    branch for you by default, however there is nothing special about the name -
-    you don't actually have to have a 'master' branch but since it's the default
-    that is created, most projects do.
+    <p>此例的意思就是，我们有一个叫做“master”的分支，并且该分支是当前分支。
+      当你执行 <code>git init</code> 的时候，缺省情况下 Git 就会为你创建“master”分支。
+      但是这名字一点特殊意味都没有 —— 事实上你并不非得要一个叫做“master”的分支。
+      不过由于它是缺省分支名的缘故，绝大部分项目都有这个分支。
     </p>
 
     <h4>
       git branch (branchname)
-      <small>create a new branch</small>
+      <small>创建新分支</small>
     </h4>
 
-    <p>So let's start by creating a new branch and switching to it.  You can do
-    that by running <code>git branch (branchname)</code>.
+    <p>我们动手创建一个分支，并切换过去。执行 <code>git branch (branchname)</code> 即可。
 	</p>
 
 <pre>
@@ -104,13 +88,10 @@ $ git branch
   testing
 </pre>
 
-    <p>Now we can see that we have a new branch.  When you create a branch this
-    way it creates the branch at your last commit so if you record some commits
-    at this point and then switch to 'testing', it will revert your working
-    directory context back to when you created the branch in the first place -
-    you can think of it like a bookmark for where you currently are.  Let's see
-    this in action - we use <code>git checkout (branch)</code> to switch the
-    branch we're currently on.
+    <p>现在我们可以看到，有了一个新分支。当你以此方式在上次提交更新之后创建了新分支，如果后来又有更新提交，
+      然后又切换到了“testing”分支，Git 将还原你的工作目录到你创建分支时候的样子 ——
+      你可以把它看作一个记录你当前进度的书签。让我们实际运用看看 ——
+      我们用 <code>git checkout (branch)</code> 切换到我们要修改的分支。
     </p>
 
 <pre>
@@ -132,9 +113,8 @@ Switched to branch 'testing'
 README   hello.rb
 </pre>
 
-    <p>So now we can see that when we switch to the 'testing' branch, our new
-    files were removed.  We could switch back to the 'master' branch and see
-    them re-appear.</p>
+    <p>当我们切换到“测试”分支的时候，我们添加的新文件被移除了。切换回“master”分支的时候，它们有重新出现了。
+    </p>
 
 <pre>
 <b>$ ls</b>
@@ -146,32 +126,15 @@ README   hello.rb more.txt test.txt
 </pre>
 
     <h4>
-      git branch -v
-      <small>see the last commit on each branch</small>
-    </h4>
-
-    <p>If we want to see last commits on each branch 
-    we can run <code>git branch -v</code> to see them.</p>
-
-<pre>
-<b>$ git branch -v</b>
-* <span class="green">master</span>      54b417d fix javascript issue
-  development 74c111d modify component.json file
-  testing     62a557a update test scripts
-</pre>
-
-    <h4>
       git checkout -b (branchname)
-      <small>create and immediately switch to a branch</small>
+      <small>创建新分支，并立即切换到它</small>
     </h4>
 
     <p>
-    In most cases you will be wanting to switch to the branch immediately, so
-    you can do work in it and then merging into a branch that only contains
-    stable work (such as 'master') at a later point when the work in your new
-    context branch is stable.  You can do this pretty easily with
-    <code>git branch newbranch; git checkout newbranch</code>, but Git gives
-    you a shortcut for this: <code>git checkout -b newbranch</code>.
+      通常情况下，你会更希望立即切换到新分支，从而在该分支中操作，然后当此分支的开发日趋稳定时，
+      将它合并到稳定版本的分支（例如“master”）中去。
+      执行 <code>git branch newbranch; git checkout newbranch</code> 也很简单，
+      不过 Git 还为你提供了快捷方式：<code>git checkout -b newbranch</code>。
     </p>
 
 <pre>
@@ -198,27 +161,24 @@ Switched to branch 'master'
 README   hello.rb more.txt test.txt
 </pre>
 
-    <p>You can see there how we created a branch, removed some of our files
-    while in the context of that branch, then switched back to our main branch
-    and we see the files return. Branching safely isolates work that we do into
-    contexts we can switch between.</p>
+    <p>如你所见，我们创建了一个分支，在该分支的上下文中移除了一些文件，然后切换回我们的主分支，那些文件又回来了。
+      使用分支将工作切分开来，从而让我们能够在不同上下文中做事，并来回切换。
+    </p>
 
     <p>
-    If you start on work it is very useful to
-    always start it in a branch (because it's fast and easy to do) and then
-    merge it in and delete the branch when you're done.  That way if what you're
-    working on doesn't work out you can easily discard it and if you're forced
-    to switch back to a more stable context your work in progress is easy to put
-    aside and then come back to.</p>
+      创建新分支，在其中完成一部分工作，完成之后将它合并到主分支并删除。你会觉得这很方便，因为这么做很快很容易。
+      如此，当你觉得这部分工作并不靠谱，舍弃它很容易。并且，如果你必须回到稳定分支做些事情，
+      也可以很方便地这个独立分支的工作先丢在一边，完成要事之后再切换回来。
+    </p>
 
     <h4>
       git branch -d (branchname)
-      <small>delete a branch</small>
+      <small>删除分支</small>
     </h4>
 
-    <p>If we want to delete a branch (such as the 'testing' branch in the
-    previous example, since there is no unique work on it),
-    we can run <code>git branch -d (branch)</code> to remove it.</p>
+    <p>假设我们要删除一个分支（比如上例中的“testing”分支，该分支没啥特殊的内容了），
+      可以执行 <code>git branch -d (branch)</code> 把它删掉。
+    </p>
 
 <pre>
 <b>$ git branch</b>
@@ -230,41 +190,8 @@ Deleted branch testing (was 78b2670).
 * <span class="green">master</span>
 </pre>
 
-    <h4>
-      git push (remote-name) :(branchname)
-      <small>delete a remote branch</small>
-    </h4>
-
-    <p>When you're done with a remote branch, whether it's been merged
-    into the remote master or you want to abandon it and sweep it under
-    the rug, you'll issue a <code>git push</code> command with a specially
-    placed colon symbol to remove that branch.</p>
-
-<pre>
-<b>$ git push origin :tidy-cutlery</b>
-To git@github.com:octocat/Spoon-Knife.git
- - [deleted]         tidy-cutlery
-</pre>
-
-    <p>In the above example you've deleted the "tidy-cutlery" branch
-    of the "origin" remote. A way to remember this is to think of the
-    <code>git push remote-name local-branch:remote-branch</code> syntax.
-    This states that you want to push your local branch to match that
-    of the remote. When you remove the <code>local-branch</code> portion
-    you're now matching nothing to the remote, effectively telling the
-    remote branch to become nothing.
-    </p>
-
-    <p>Alternatively, you can run
-    <code>git push remote-name --delete branchname</code>
-    which is a wrapper for the colon refspec (a <code>source:destination</code> pair)
-    of deleting a remote branch.
-    </p>
-
     <p class="nutshell">
-    <b>In a nutshell</b> you use <code>git branch</code> to list your
-    current branches, create new branches and delete unnecessary or
-    already merged branches.
+      <b>简而言之</b> 使用 <code>git branch</code> 列出现有的分支、创建新分支以及删除不必要或者已合并的分支。
     </p>
 
   </div>
@@ -277,18 +204,15 @@ To git@github.com:octocat/Spoon-Knife.git
       <a target="new" href="http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging#Basic-Merging">book</a>
     </span>
     <a name="merge">git merge</a>
-    <span class="desc">merge a branch context into your current one</span>
+    <span class="desc">将分支合并到你的当前分支</span>
   </h2>
 
   <div class="block">
-    <p>Once you have work isolated in a branch, you will eventually want to
-    incorporate it into your main branch.  You can merge any branch into your
-    current branch with the <code>git merge</code> command.  Let's take as a
-    simple example the 'removals' branch from above.  If we create a branch
-    and remove files in it and commit our removals to that branch, it is
-    isolated from our main ('master', in this case) branch.  To include those
-    deletions in your 'master' branch, you can just merge in the 'removals'
-    branch.
+    <p>一旦某分支有了独立内容，你终究会希望将它合并回到你的主分支。
+      你可以使用 <code>git merge</code> 命令将任何分支合并到当前分支中去。
+      我们那上例中的“removals”分支为例。假设我们创建了一个分支，移除了一些文件，并将它提交到该分支，
+      其实该分支是与我们的主分支（也就是“master”）独立开来的。
+      要想将这些移除操作包含在主分支中，你可以将“removals”分支合并回去。
     </p>
 
 <pre>
@@ -310,14 +234,12 @@ Fast-forward
 </pre>
 
     <h4>
-      more complex merges
+      更多复杂合并
     </h4>
 
-    <p>Of course, this doesn't just work for simple file additions and
-    deletions. Git will merge file modifications as well - in fact, it's very
-    good at it.  For example, let's see what happens when we edit a file in
-    one branch and in another branch we rename it and then edit it and then
-    merge these branches together.  Chaos, you say?  Let's see.
+    <p>当然，合并并不仅仅是简单的文件添加、移除的操作，Git 也会合并修改 —— 事实上，它很会合并修改。
+      举例，我们看看在某分支中编辑某个文件，然后在另一个分支中把它的名字改掉再做些修改，
+      最后将这俩分支合并起来。你觉得会变成一坨 shi？我们试试看。
     </p>
 
 <pre>
@@ -333,12 +255,12 @@ end
 HelloWorld.hello
 </pre>
 
-    <p>So first we're going to create a new branch named 'change_class' and
-    switch to it so your class renaming changes are isolated. We're going to
-    change each instance of 'HelloWorld' to 'HiWorld'.</p>
+    <p>首先，我们创建一个叫做“change_class”的分支，切换过去，从而将重命名类等操作独立出来。我们将类名从 “HelloWorld” 改为 “HiWorld”。
+    </p>
 
 <pre>
 <b>$ git checkout -b change_class</b>
+M hello.rb
 Switched to a new branch 'change_class'
 <b>$ vim hello.rb </b>
 <b>$ head -1 hello.rb </b>
@@ -348,12 +270,10 @@ class HiWorld
  1 files changed, 2 insertions(+), 4 deletions(-)
 </pre>
 
-    <p>So now we've committed the class renaming changes to the 'change_class'
-      branch.  To switch back to the 'master' branch the class name will
-      revert to what it was before we switched branches. Here we can change
-      something different (in this case the printed output) and at the same
-      time rename the file from <code>hello.rb</code> to <code>ruby.rb</code>.
-      </p>
+    <p>然后，将重命名类操作提交到 “change_class” 分支中。
+      现在，假如切换回 “master” 分支我们可以看到类名恢复到了我们切换到 “change_class” 分支之前的样子。
+      现在，再做些修改（即代码中的输出），同时将文件名从 <code>hello.rb</code> 改为 <code>ruby.rb</code>。
+    </p>
 
 <pre>
 <b>$ git checkout master</b>
@@ -380,11 +300,10 @@ index 2aabb6e..bf64b17 100644
  rename hello.rb => ruby.rb (65%)
 </pre>
 
-    <p>Now those changes are recorded in the 'master' branch.  Notice that the
-      class name is back to 'HelloWorld', not 'HiWorld'.  To incorporate
-      the 'HiWorld' change we can just merge in the 'change_class'
-      branch.  However, the name of the file has changed since we branched,
-      what will Git do?</p>
+    <p>现在这些改变已经记录到我的 “master” 分支了。请注意，这里类名还是 “HelloWorld”，而不是 “HiWorld”。
+      然后我想将类名的改变合并过来，我把 “change_class” 分支合并过来就行了。
+      但是，我已经将文件名都改掉了，Git 知道该怎么办么？
+    </p>
 
 <pre>
 <b>$ git branch</b>
@@ -406,19 +325,16 @@ end
 HiWorld.hello
 </pre>
 
-    <p>Well, it will just figure it out. Notice that there are no merge conflicts
-    and the file that had been renamed now has the 'HiWorld' class name change
-    that was done in the other branch. Pretty cool.</p>
+    <p>不错，它就是发现了。请注意，在这部操作，我没有遇到合并冲突，并且文件已经重命名、类名也换掉了。挺酷。
+    </p>
 
     <h4>
-      merge conflicts
+      合并冲突
     </h4>
 
-    <p>So, Git merges are magical, we never ever have to deal with merge
-      conflicts again, right?  Not quite.  In situations where the same block
-      of code is edited in different branches there is no way for a computer
-      to figure it out, so it's up to us.  Let's see another example of changing
-      the same line in two branches.
+    <p>那么，Git 合并很有魔力，我们再也不用处理合并冲突了，对吗？不太确切。
+      不同分支中修改了相同区块的代码，电脑自己猜不透神马的情况下，冲突就摆在我们面前了。
+      我们看看两个分支中改了同一行代码的例子。
     </p>
 
 <pre>
@@ -432,9 +348,8 @@ Switched to a new branch 'fix_readme'
  1 files changed, 1 insertions(+), 1 deletions(-)
 </pre>
 
-    <p>Now we have committed a change to one line in our README file in a
-      branch.  Now let's change the same line in a different way back on
-      our 'master' branch.</p>
+    <p>我们在某分支中修改了 README 文件中的一行，并提交了。我们再在 “master” 分支中对同个文件的同一行内容作不同的修改。
+    </p>
 
 <pre>
 <b>$ git checkout master</b>
@@ -445,8 +360,8 @@ Switched to branch 'master'
  1 files changed, 1 insertions(+), 1 deletions(-)
 </pre>
 
-    <p>Now is the fun part - we will merge the first branch into our master
-      branch, causing a merge conflict.</p>
+    <p>有意思的来了 —— 我们将前一个分支合并到 “master” 分支，一个合并冲突就出现了。
+      </p>
 
 <pre>
 <b>$ git merge fix_readme</b>
@@ -464,16 +379,14 @@ This project has examples of hello world in
 nearly every programming language.
 </pre>
 
-    <p>You can see that Git inserts standard merge conflict markers, much like
-      Subversion, into files when it gets a merge conflict.  Now it's up to us
-      to resolve them.  We will do it manually here, but check out
-      <a href="http://git-scm.com/docs/git-mergetool">git mergetool</a>
-      if you want Git to fire up a graphical mergetool
-      (like kdiff3, emerge, p4merge, etc) instead.
+    <p>你可以看到，Git 在产生合并冲突的地方插入了标准的与 Subversion 很像的合并冲突标记。
+      轮到我们去解决这些冲突了。在这里我们就手动把它解决。如果你要 Git 打开一个图形化的合并工具，
+      可以看看 <a href="http://git-scm.com/docs/git-mergetool">git 合并工具</a>
+      （比如 kdiff3、emerge、p4merge 等）。
     </p>
 
 <pre>
-<b>$ vim README </b>  <span class="exp"># here I'm fixing the conflict</span>
+<b>$ vim README </b>  <span class="exp">here I'm fixing the conflict</span>
 <b>$ git diff</b>
 <span class="umber">diff --cc README
 index 9103e27,69cad1a..0000000
@@ -487,11 +400,10 @@ index 9103e27,69cad1a..0000000
   This project has examples of hello world in
 </pre>
 
-    <p>A cool tip in doing merge conflict resolution in Git is that if you
-    run <code>git diff</code>, it will show you both sides of the conflict
-    and how you've resolved it as shown here. Now it's time to mark
-    the file as resolved.  In Git we do that with <code>git add</code> -
-    to tell Git the file has been resolved you have to stage it.</p>
+    <p>在 Git 中，处理合并冲突的时候有个很酷的提示。
+      如果你执行 <code>git diff</code>，就像我演示的这样，它会告诉你冲突的两方，和你是如何解决的。
+      现在是时候把它标记为已解决了。在 Git 中，我们可以用 <code>git add</code> —— 要告诉 Git 文件冲突已经解决，你必须把它写入缓存区。
+    </p>
 
 <pre>
 <b>$ git status -s</b>
@@ -503,14 +415,12 @@ M  README
 [master 8d585ea] Merge branch 'fix_readme'
 </pre>
 
-    <p>And now we've successfully resolved our merge conflict and committed
-    the result.</p>
+    <p>现在我们成功解决了合并中的冲突，并提交了结果
+    </p>
 
     <p class="nutshell">
-    <b>In a nutshell</b> you use <code>git merge</code> to combine another
-    branch context into your current branch.  It automatically figures out
-    how to best combine the different snapshots into a new snapshot with the
-    unique work of both.
+      <b>简而言之</b> 使用 <code>git merge</code> 将另一个分支并入当前的分支中去。
+      Git 会自动以最佳方式将两个不同快照中独特的工作合并到一个新快照中去。
     </p>
 
   </div>
@@ -519,39 +429,30 @@ M  README
 <div class="box">
   <h2>
     <span class="docs">
-      <a target="new" href="http://git-scm.com/docs/git-log">docs</a> &nbsp;
-      <a target="new" href="http://git-scm.com/book/en/Git-Tools-Revision-Selection#Commit-Ranges">book</a>
+      <a target="new" href="http://git-scm.com/docs/git-log">文档</a> &nbsp;
+      <a target="new" href="http://git-scm.com/book/en/Git-Tools-Revision-Selection#Commit-Ranges">书</a>
     </span>
     <a name="log">git log</a>
-    <span class="desc">show commit history of a branch</span>
+    <span class="desc">显示一个分支中提交的更改记录</span>
   </h2>
 
   <div class="block">
 
-    <p>So far we have been committing snapshots of your project and switching
-    between different isolated contexts, but what if we've forgotten how we've
-    got to where we are?  Or what if we want to know how one branch differs
-    from another?  Git provides a tool that shows you all the commit messages
-    that have lead up to the snapshot you are currently on, which is called
-    <code>git log</code>.</p>
-
-    <p>To understand the log command, you have to understand what information
-    is stored when you run the <code>git commit</code> command to store a
-    snapshot.  In addition to the manifest of files and commit message and
-    information about the person who committed it, Git also stores the commit
-    that you based this snapshot on.  That is, if you clone a project, what was
-    the snapshot that you modified to get to the snapshot that you saved?  This
-    is helpful to give context to how the project got to where it is and allows
-    Git to figure out who changed what.  If Git has the snapshot you save and
-    the one you based it on, then it can automatically figure out what you
-    changed.  The commit that a new commit was based on is called the "parent".
+    <p>到目前为止，我们已经提交快照到项目中，在不同的各自分离的上下文中切换，
+      但假如我们忘了自己是如何到目前这一步的那该怎么办？或者假如我们想知道此分支与彼分支到底有啥区别？
+      Git 提供了一个告诉你使你达成当前快照的所有提交消息的工具，叫做 <code>git log</code>。
     </p>
 
-    <p>To see a chronological list of the parents of any branch, you can run
-    <code>git log</code> when you are in that branch.  For example, if we run
-    <code>git log</code> in the Hello World project that we have been working
-    on in this section, we'll see all the commit messages that we've done.
-	</p>
+    <p>要理解日志（log）命令，你需要了解当执行 <code>git commit</code> 以存储一个快照的时候，都有啥信息被保存了。
+      除了文件详单、提交消息和提交者的信息，Git 还保存了你的此次提交所基于的快照。
+      也就是，假如你克隆了一个项目，你是在什么快照的基础上做的修改而得到新保存的快照的？
+      这有益于为项目进程提供上下文，使 Git 能够弄明白谁做了什么改动。
+      如果 Git 有你的快照所基于的快照的话，它就能自动判断你都改变了什么。而新提交所基于的提交，被称作新提交的“父亲”。
+    </p>
+
+    <p>某分支的按时间排序的“父亲”列表，当你在该分支时，可以执行 <code>git log</code> 以查看。
+      例如，如果我们在本章中操作的 Hello World 项目中执行 <code>git log</code>，我们可以看到已提交的消息。
+    </p>
 
 <pre>
 <b>$ git log</b>
@@ -586,8 +487,8 @@ Date:   Fri Jun 4 12:37:05 2010 +0200
 ...
 </pre>
 
-    <p>To see a more compact version of the same history, we can use the
-    <code>--oneline</code> option.</p>
+  <p>我们可以用 <code>--oneline</code> 选项来查看历史记录的紧凑简洁的版本。
+    </p>
 
 <pre>
 <b>$ git log --oneline</b>
@@ -600,14 +501,12 @@ b7ae93b added from ruby
 17f4acf first commit
 </pre>
 
-    <p>What this is telling us is that this is the history of the development
-    of this project.  If the commit messages are descriptive, this can inform
-    us as to what all changes have been applied or have influenced the current
-    state of the snapshot and thus what is in it.</p>
+    <p>
+      这告诉我们的是，此项目的开发历史。如果提交消息描述性很好，这就能为我们提供关于有啥改动被应用、或者影响了当前快照的状态、以及这快照里头都有啥。
+    </p>
 
-    <p>We can also use it to see when the history was branched and merged with
-    the very helpful <code>--graph</code> option.  Here is the same command
-    but with the topology graph turned on:</p>
+    <p>我们还可以用它的十分有帮助的 <code>--graph</code> 选项，查看历史中什么时候出现了分支、合并。以下为相同的命令，开启了拓扑图选项：
+    </p>
 
 <pre>
 <b>$ git log --oneline --graph</b>
@@ -624,18 +523,16 @@ b7ae93b added from ruby
 * 17f4acf first commit
 </pre>
 
-    <p>Now we can more clearly see when effort diverged and then was merged
-    back together.  This is very nice for seeing what has happened or what
-    changes are applied, but
-    it is also incredibly useful for managing your branches.  Let's create a new
-    branch, do some work in it and then switch back and do some work in our
-    master branch, then see how the <code>log</code> command can help us figure
-    out what is happening on each.</p>
+    <p>现在我们可以更清楚明了地看到何时工作分叉、又何时归并。
+      这对查看发生了什么、应用了什么改变很有帮助，并且极大地帮助你管理你的分支。
+      让我们创建一个分支，在里头做些事情，然后切回到主分支，也做点事情，然后看看 <code>log</code>
+      命令是如何帮助我们理清这俩分支上都发生了啥的。
+    </p>
 
-    <p>First we'll create a new branch to add the Erlang programming language
-    Hello World example - we want to do this in a branch so that we don't
-    muddy up our stable branch with code that may not work for a while so we
-    can cleanly switch in and out of it.</p>
+    <p>首先我们创建一个分支，来添加 Erlang 编程语言的 Hello World 示例 ——
+      我们想要在一个分支里头做这个，以避免让可能还不能工作的代码弄乱我们的稳定分支。
+      这样就可以切来切去，片叶不沾身。
+    </p>
 
 <pre>
 <b>$ git checkout -b erlang</b>
@@ -648,9 +545,8 @@ Switched to a new branch 'erlang'
  create mode 100644 erlang_hw.erl
 </pre>
 
-    <p>Since we're having fun playing in functional programming languages we
-    get caught up in it and also add a Haskell example program while still in
-    the branch named 'erlang'.</p>
+    <p>由于我们玩函数式编程很开心，以至于沉迷其中，又在“erlang”分支中添加了一个 Haskell 的示例程序。
+    </p>
 
 <pre>
 <b>$ vim haskell.hs</b>
@@ -661,10 +557,8 @@ Switched to a new branch 'erlang'
  create mode 100644 haskell.hs
 </pre>
 
-    <p>Finally, we decide that we want to change the class name of our Ruby
-    program back to the way it was.  So, we can go back to the master branch
-    and change that and we decide to just commit it directly in the master
-    branch instead of creating another branch.</p>
+    <p>最后，我们决定还是把 Ruby 程序的类名改回原先的样子。与其创建另一个分支，我们可以返回主分支，改变它，然后直接提交。
+    </p>
 
 <pre>
 <b>$ git checkout master</b>
@@ -677,13 +571,11 @@ README  ruby.rb
  1 files changed, 2 insertions(+), 2 deletions(-)
 </pre>
 
-    <p>So, now say we don't work on the project for a while, we have other
-    things to do.  When we come back we want to know what the 'erlang' branch
-    is all about and where we've left off on the master branch.  Just by looking
-    at the branch name, we can't know that we made Haskell changes in there, but
-    using <code>git log</code> we easily can.  If you give Git a branch name,
-    it will show you just the commits that are "reachable" in the history of
-    that branch, that is the commits that influenced the final snapshot.</p>
+    <p>现在假设我们有段时间不做这个项目了，我们做别的去了。
+      当我们回来的时候，我们想知道“erlang”分支都是啥，而主分支的进度又是怎样。
+      仅仅看分支的名字，我们是无从知道自己还在里面有 Haskell 的改动的，但是用 <code>git log</code> 我们就可以。
+      如果你在命令行中提供一个分支名字，它就会显示该分支历史中“可及”的提交，即从该分支创立起可追溯的影响了最终的快照的提交。
+    </p>
 
 <pre>
 <b>$ git log --oneline erlang</b>
@@ -698,23 +590,13 @@ b7ae93b added from ruby
 17f4acf first commit
 </pre>
 
-    <p>This way, it's pretty easy to see that we have Haskell code included in
-      the branch (highlighted in the output). What is even cooler is that we can
-      easily tell Git that we only are interested in the commits that are
-      reachable in one branch that are not reachable in another, in other words
-      which commits are unique to a branch in comparison to another.
+    <p>如此，我们很容易就看到分支里头还包括了 Haskell 代码（高亮显示了）。
+      更酷的是，我们很容易地告诉 Git，我们只对某个分支中可及的提交感兴趣。换句话说，某分支中与其他分支相比唯一的提交。
     </p>
 
-    <p>
-      In this case if we are interested in merging in the 'erlang' branch we
-      want to see what commits are going to effect our snapshot when we do
-      that merge.  The way we tell Git that is by putting a <code>^</code> in
-      front of the branch that we don't want to see.  For instance, if we want
-      to see the commits that are in the 'erlang' branch that are not in the
-      'master' branch, we can do <code>erlang ^master</code>, or vice versa.
-      Note that the Windows command-line treats <code>^</code> as a special
-      character, in which case you'll need to surround <code>^master</code>
-      in quotes.
+    <p>在此例中，如果我们想要合并“erlang”分支，我们需要看当合并的时候，都有啥提交会作用到我们的快照上去。
+      我们告诉 Git 的方式是，在不想要看到的分支前放一个 <code>^</code>。
+      例如，如果我们想要看“erlang”分支中但不在主分支中的提交，我们可以用 <code>erlang ^master</code>，或者反之。
     </p>
 
 <pre>
@@ -725,16 +607,11 @@ ab5ab4c added erlang
 594f90b reverted to old class name
 </pre>
 
-    <p>This gives us a nice, simple branch management tool. It allows us to
-      easily see what commits are unique to which branches so we know what
-      we're missing and what we would be merging in if we were to do a merge.
+    <p>这为我们提供了一个良好的、简易的分支管理工具。它使我们能够非常容易地查看对某个分支唯一的提交，从而知道我们缺少什么，以及当我们要合并时，会有什么被合并进去。
     </p>
 
     <p class="nutshell">
-    <b>In a nutshell</b> you use <code>git log</code> to list out the commit
-    history or list of changes people have made that have lead to the snapshot
-    at the tip of the branch.  This allows you to see how the project in that
-    context got to the state that it is currently in.
+      <b>简而言之</b> 使用 <code>git log</code> 列出促成当前分支目前的快照的提交历史记录。这使你能够看到项目是如何到达现在的状况的。
     </p>
 
   </div>
@@ -743,41 +620,37 @@ ab5ab4c added erlang
 <div class="box">
   <h2>
     <span class="docs">
-      <a target="new" href="http://git-scm.com/docs/git-tag">docs</a> &nbsp;
-      <a target="new" href="http://git-scm.com/book/en/Git-Basics-Tagging">book</a>
+      <a target="new" href="http://git-scm.com/docs/git-tag">文档</a> &nbsp;
+      <a target="new" href="http://git-scm.com/book/en/Git-Basics-Tagging">书</a>
     </span>
     <a name="tag">git tag</a>
-    <span class="desc">tag a point in history as important</span>
+    <span class="desc">给历史记录中的某个重要的一点打上标签</span>
   </h2>
 
   <div class="block">
 
     <p>
-    If you get to a point that is important and you want to forever remember
-    that specific commit snapshot, you can tag it with <code>git tag</code>.
-    The <code>tag</code> command will basically put a permanent bookmark at
-    a specific commit so you can use it to compare to other commits in the
-    future.  This is often done when you cut a release or ship something.
+      如果你达到一个重要的阶段，并希望永远记住那个特别的提交快照，你可以使用 <code>git tag</code> 给它打上标签。
+      该 <code>tag</code> 命令基本上会给该特殊提交打上永久的书签，从而使你在将来能够用它与其他提交比较。
+      通常，你会在切取一个发布版本或者交付一些东西的时候打个标签。
     </p>
 
-    <p>Let's say we want to release our Hello World project as version "1.0".
-    We can tag the last commit (<code>HEAD</code>) as "v1.0" by running
-    <code>git tag -a v1.0</code>.  The <code>-a</code> means "make an annotated
-    tag", which allows you to add a tag message to it, which is what you almost
-    always want to do.  Running this without the <code>-a</code> works too, but
-    it doesn't record when it was tagged, who tagged it, or let you add a tag
-    message. It's recommended you always create annotated tags.</p>
+    <p>比如说，我们想为我们的 Hello World 项目发布一个“1.0”版本。
+      我们可以用 <code>git tag -a v1.0</code> 命令给最新一次提交打上（<code>HEAD</code>）“v1.0”的标签。
+      <code>-a</code> 选项意为“创建一个带注解的标签”，从而使你为标签添加注解。绝大部分时候都会这么做的。
+      不用 <code>-a</code> 选项也可以执行的，但它不会记录这标签是啥时候打的，谁打的，也不会让你添加个标签的注解。
+      我推荐一直创建带注解的标签。
+    </p>
 
 <pre>
 <b>$ git tag -a v1.0 </b>
 </pre>
 
-  <p>When you run the <code>git tag -a</code> command, Git will open your editor
-    and have you write a tag message, just like you would write a commit
-    message.</p>
+    <p>当你执行 <code>git tag -a</code> 命令时，Git 会打开你的编辑器，让你写一句标签注解，就像你给提交写注解一样。
+    </p>
 
-  <p>Now, notice when we run <code>git log --decorate</code>, we can see our
-    tag there.</p>
+    <p>现在，注意当我们执行 <code>git log --decorate</code> 时，我们可以看到我们的标签了：
+    </p>
 
 <pre>
 <b>$ git log --oneline --decorate --graph</b>
@@ -795,15 +668,13 @@ ab5ab4c added erlang
 * 17f4acf first commit
 </pre>
 
-  <p>If we do more commits, the tag will stay right at that commit, so we have
-    that specific snapshot tagged forever and can always compare future
-    snapshots to it.</p>
+    <p>如果我们有新提交，该标签依然会待在该提交的边上，所以我们已经给那个特定快照永久打上标签，并且能够将它与未来的快照做比较。
+    </p>
 
-  <p>We don't have to tag the commit that we're on, however.  If we forgot to
-    tag a commit that we released, we can retroactively tag it by running the
-    same command, but with the commit SHA at the end.  For example, say we had
-    released commit <code>558151a</code> (several commits back) but forgot to
-    tag it at the time.  We can just tag it now:</p>
+    <p>不过我们并不需要给当前提交打标签。如果我们忘了给某个提交打标签，又将它发布了，我们可以给它追加标签。
+      在相同的命令末尾加上提交的 SHA，执行，就可以了。
+      例如，假设我们发布了提交 <code>558151a</code>（几个提交之前的事情了），但是那时候忘了给它打标签。
+      我们现在也可以：</p>
 
 <pre>
 <b>$ git tag -a v0.9 558151a</b>
@@ -822,43 +693,8 @@ ab5ab4c added erlang
 * 17f4acf first commit
 </pre>
 
-    <p>Tags pointing to objects tracked from branch heads will be
-      automatically downloaded when you <code>fetch</code> from a remote
-      repository. However, tags that aren't reachable from branch heads
-      will be skipped. If you want to make sure <em>all</em> tags are <em>always</em>
-      included, you must include the <code>--tags</code> option.
-    </p>
-
-<pre>
-<b>$ git fetch origin --tags</b>
-remote: Counting objects: 1832, done.
-remote: Compressing objects: 100% (726/726), done.
-remote: Total 1519 (delta 1000), reused 1202 (delta 764)
-Receiving objects: 100% (1519/1519), 1.30 MiB | 1.21 MiB/s, done.
-Resolving deltas: 100% (1000/1000), completed with 182 local objects.
-From git://github.com:example-user/example-repo
- * [new tag]         v1.0       -> v1.0
- * [new tag]         v1.1       -> v1.1
-</pre>
-
-    <p>If you just want a single tag, use
-      <code>git fetch &lt;remote> tag &lt;tag-name></code>.
-    </p>
-
-    <p>By default, tags are not included when you <code>push</code> to
-      a remote repository. In order to explicitly update these you must
-      include the <code>--tags</code> option when using <code>git push</code>.
-    </p>
-
-    <p class="nutshell">
-    <b>In a nutshell</b> you use <code>git tag</code> to mark a
-    commit or point in your repo as important. This also allows
-    you to refer to that commit with a more memorable reference
-    than a SHA.
-    </p>
-
   </div>
 </div>
 
-<p><a class="page-button next-page" href="/remotes">On to Sharing and Updating Projects &#187;</a></p>
+<p><a href="/zh/remotes">到 分享与更新项目 &#187;</a></p>
 

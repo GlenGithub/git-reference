@@ -1,62 +1,53 @@
 ---
-layout: reference
+layout: zh_reference
 ---
 
 <div class="box">
-  <h2>Getting and Creating Projects</h2>
+  <h2>获取与创建项目</h2>
   <div class="block">
     <p>
-    In order to do anything in Git, you have to have a Git repository.  This
-    is where Git stores the data for the snapshots you are saving.
+      你得先有一个 Git 仓库，才能用它进行操作。仓库是 Git 存放你要保存的快照的数据的地方。
     </p>
 
-    <p>
-    There are two main ways to get a Git repository.  One way is to simply
-    initialize a new one from an existing directory, such as a new project or
-    a project new to source control.  The second way is to clone one from a
-    public Git repository, as you would do if you wanted a copy or wanted to
-    work with someone on a project.  We will cover both of these here.
+    <p>拥有一个 Git 仓库的途径有两种。在已有的目录中，初始化一个新的，其一。
+      比如一个新的项目，或者一个已存在的项目，但该项目尚未有版本控制。如果你想要复制一份别人的项目，
+      或者与别人合作某个项目，也可以从一个公开的 Git 仓库克隆，其二。本章将对两者都做介绍。
     </p>
-
   </div>
 </div>
 
 <div class="box">
   <h2>
     <span class="docs">
-      <a target="new" href="http://git-scm.com/docs/git-init">docs</a> &nbsp;
-      <a target="new" href="http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository#Initializing-a-Repository-in-an-Existing-Directory">book</a>
+      <a target="new" href="http://git-scm.com/docs/git-init">文档</a> &nbsp;
+      <a target="new" href="http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository#Initializing-a-Repository-in-an-Existing-Directory">书</a>
     </span>
     <a name="init">git init</a>
-    <span class="desc">initializes a directory as a Git repository</span>
+    <span class="desc">将一个目录初始化为 Git 仓库</span>
   </h2>
 
   <div class="block">
-    <p>To create a repository from an existing directory of files, you can
-    simply run <code>git init</code> in that directory.  For example,
-    let's say we have a directory with a few files in it, like this:
-    </p>
-
+  <p>在目录中执行 <code>git init</code>，就可以创建一个 Git 仓库了。比如，我们恰好有个目录，里头有些许文件，如下：
+  </p>
 <pre>
 <b>$ cd konichiwa</b>
 <b>$ ls</b>
 README   hello.rb
 </pre>
 
-    <p>This is a project where we are writing examples of the "Hello World"
-    program in every language.  So far, we just have Ruby, but hey, it's
-    a start.  To start version controlling this with Git, we can simply
-    run <code>git init</code>.
+    <p>
+      在这个项目里头，我们会用各种编程语言写 "Hello World" 实例。
+      到目前为止，我们只有 Ruby 的，不过，这才刚上路嘛。为了开始用 Git 对这个项目作版本控制，我们执行一下 <code>git init</code>。
     </p>
 
 <pre>
 <b>$ git init</b>
 Initialized empty Git repository in /opt/konichiwa/.git/
+# 在 /opt/konichiwa/.git 目录初始化空 Git 仓库完毕。
 </pre>
 
-    <p>Now you can see that there is a <code>.git</code> subdirectory in your
-    project.  This is your Git repository where all the data of your
-    project snapshots are stored.
+    <p>现在你可以看到在你的项目目录中有个 <code>.git</code> 的子目录。
+      这就是你的 Git 仓库了，所有有关你的此项目的快照数据都存放在这里。
     </p>
 
 <pre>
@@ -64,14 +55,13 @@ Initialized empty Git repository in /opt/konichiwa/.git/
 .        ..       .git     README   hello.rb
 </pre>
 
-    <p>Congratulations, you now have a skeleton Git repository and can start
-    snapshotting your project.
-    </p>
+  <p>恭喜，现在你就有了一个 Git 仓库的架子，可以开始快照你的项目了。
+  </p>
 
     <p class="nutshell">
-    <strong>In a nutshell</strong>, you use <code>git init</code> to make an
-    existing directory of content into a new Git repository.  You can do this
-    in any directory at any time, completely locally.</p>
+      <strong>简而言之</strong>，用 <code>git init</code> 来在目录中创建新的 Git 仓库。
+      你可以在任何时候、任何目录中这么做，完全是本地化的。
+    </p>
 
   </div>
 </div>
@@ -79,18 +69,15 @@ Initialized empty Git repository in /opt/konichiwa/.git/
 <div class="box">
   <h2>
     <span class="docs">
-      <a target="new" href="http://git-scm.com/docs/git-clone">docs</a> &nbsp;
-      <a target="new" href="http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository#Cloning-an-Existing-Repository">book</a>
+      <a target="new" href="http://git-scm.com/docs/git-clone">文档 </a> &nbsp;
+      <a target="new" href="http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository#Cloning-an-Existing-Repository">书</a>
     </span>
     <a name="clone">git clone</a>
-    <span class="desc">copy a git repository so you can add to it</span>
+    <span class="desc">复制一个 Git 仓库，以上下其手</span>
   </h2>
   <div class="block">
-    <p>
-    If you need to collaborate with someone on a project, or if you want to
-    get a copy of a project so you can look at or use the code, you will
-    clone it.  You simply run the <code>git clone [url]</code> command with
-    the URL of the project you want to copy.
+    <p>如果你需要与他人合作一个项目，或者想要复制一个项目，看看代码，你就可以克隆那个项目。
+      执行 <code>git clone [url]</code>，[url] 为你想要复制的项目，就可以了。
     </p>
 
 <pre>
@@ -106,12 +93,9 @@ Resolving deltas: 100% (35/35), done.
 README   Rakefile <span class="blue">lib</span>
 </pre>
 
-    <p>
-    This will copy the entire history of that project so you have it locally
-    and it will give you a working directory of the main branch of that project
-    so you can look at the code or start editing it.  If you change into the
-    new directory, you can see the <code>.git</code> subdirectory - that is
-    where all the project data is.
+    <p>上述操作将复制该项目的全部记录，让你本地拥有这些。并且该操作将拷贝该项目的主分支，
+      使你能够查看代码，或编辑、修改。进到该目录中，你会看到 <code>.git</code> 子目录。
+      所有的项目数据都存在那里。
     </p>
 
 <pre>
@@ -124,19 +108,16 @@ HEAD        description <span class="blue">info</span>        packed-refs
 config      index       <span class="blue">objects</span>
 </pre>
 
-    <p>
-    By default, Git will create a directory that is the same name as the
-    project in the URL you give it - basically whatever is after the last slash
-    of the URL.  If you want something different, you can just put it at the
-    end of the command, after the URL.
+    <p>默认情况下，Git 会按照你提供的 URL 所指示的项目的名称创建你的本地项目目录。
+      通常就是该 URL 最后一个 <code>/</code> 之后的任何东西。如果你想要一个不一样的名字，
+      你可以在该命令后加上它，就在那个 URL 后面。
     </p>
 
     <p class="nutshell">
-    <strong>In a nutshell</strong>, you use <code>git clone</code> to get a
-    local copy of a Git repository so you can look at it or start modifying
-    it.</p>
+    <strong>简而言之</strong>，使用 <code>git clone</code> 拷贝一个 Git 仓库到本地，让自己能够查看该项目，或者进行修改。
+    </p>
 
   </div>
 </div>
 
-<p><a class="page-button next-page" href="/basic">On to Basic Snapshotting &#187;</a></p>
+<p><a href="/zh/basic">接下来：基本快照 &#187;</a></p>

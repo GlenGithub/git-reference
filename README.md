@@ -1,18 +1,15 @@
-# Online Git Reference
+# 在线 Git 命令参考
 
-Quick reference guide of basic Git commands along with examples of
-common uses and options.
+本站为 Git 参考手册。
 
-Each section includes tasks related to the type of operation you
-may be trying to do.
+目的是为学习与记忆 Git 使用中最重要、最普遍的命令提供快速翻阅。 
+这些命令以你可能需要的操作类型划分，并且将提供日常使用中需要的一些常用的命令以及参数。
 
-If you would like to know more about a command listed, each command
-links to both the official manual page and its relevant chapter
-in the [Pro Git book](http://git-scm.com/book).
+每个章节都有到下一个章节的链接，所以本手册也可以当作一个入门指导。 
 
-## Contributing
+每个页面还有一个深度 Git 文档阅读的链接，比如官方的使用手册页面或者《[Pro Git](http://git-scm.com/book)》书中的相关章节，
+以便于你学习了解更多的 Git 命令。
 
-If you would like to contribute, simply fork the repository, push
-your changes to a branch and send a pull request.
+## 贡献
 
-Typo fixes, improvements to grammar or readability, it's all welcome.
+你可以使用 fork-pull 的方式来参与到手册的撰写或翻译工作中。
